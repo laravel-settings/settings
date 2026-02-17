@@ -1,0 +1,33 @@
+# Vendor
+/vendor/
+
+# Composer
+composer.lock
+
+# PHPUnit / Pest
+.phpunit.result.cache
+coverage/
+test-results/
+
+# Laravel Testbench cache
+/.phpunit.cache
+/.pest
+
+# IDE
+/.idea
+/.vscode
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# SQLite testing database (if you ever use file DB)
+*.sqlite
+
+# Laravel temporary
+bootstrap/cache/*.php

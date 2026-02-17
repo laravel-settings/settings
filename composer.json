@@ -1,0 +1,46 @@
+{
+  "name": "laravel-settings/settings",
+  "description": "Simple settings management package for Laravel",
+  "type": "library",
+  "license": "MIT",
+
+  "require": {
+    "php": "^8.2",
+    "illuminate/support": "*"
+  },
+
+  "require-dev": {
+    "orchestra/testbench": "^10.9",
+    "pestphp/pest": "^4.3",
+    "pestphp/pest-plugin-laravel": "^4.0"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "LaravelSettings\\Settings\\": "app/"
+    }
+  },
+
+  "autoload-dev": {
+    "psr-4": {
+      "LaravelSettings\\Settings\\Tests\\": "tests/"
+    }
+  },
+
+  "extra": {
+    "laravel": {
+      "providers": [
+        "LaravelSettings\\Settings\\Providers\\SettingsServiceProvider"
+      ]
+    }
+  },
+
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
