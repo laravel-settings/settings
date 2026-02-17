@@ -161,7 +161,11 @@ class SettingsServices implements ArrayAccess
     {
         if (!is_array($this->value) || !array_key_exists($property, $this->value)) return null;
 
-        return $this->toObject($this->value[$property]);
+        $value = $this->value[$property];
+
+        if (is_array($value) && array_key_exists($this->lang, $value)) return $value[$this->lang] ?? reset($value);
+
+        return $this->toObject($value);
     }
 
     public function first(): mixed

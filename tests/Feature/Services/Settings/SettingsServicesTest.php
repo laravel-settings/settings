@@ -56,11 +56,10 @@ class SettingsServicesTest extends TestCase
 
         setting('single_language')->save($items);
 
-        $locale = 'ar';
-        //$locale = app()->getLocale();
+        $locale = app()->getLocale();
 
-		$this->assertEquals($items['name'][$locale], setting('single_language')->name->ar);
-		$this->assertEquals($items['email'][$locale], setting('single_language')->email->ar);
+        $this->assertEquals($items['name'][$locale], setting('single_language')->name);
+		$this->assertEquals($items['email'][$locale], setting('single_language')->email);
 
         //blade
         $blade = "@setting('single_language', 'name.ar')";

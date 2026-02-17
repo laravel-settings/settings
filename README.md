@@ -252,8 +252,8 @@ setting('website')->save([
 ]);
 
 // Access a specific locale directly
-echo setting('website')->name->ar; // اسم الموقع
-echo setting('website')->name->en; // Website Name
+echo setting('website')->name; // اسم الموقع
+echo setting('website')->name; // Website Name
 ```
 
 Pass a locale as the second argument to resolve values automatically:
@@ -316,7 +316,7 @@ Loop over a list of settings. The default variable is `$item` if no alias is pro
 
 {{-- Loop over a nested key using dot notation --}}
 @eachSetting('language_items.admins' as $admin)
-    <div>{{ $admin->name }} - {{ $admin->email->ar }}</div>
+    <div>{{ $admin->name }} - {{ $admin->email }}</div>
 @endEachSetting
 ```
 
