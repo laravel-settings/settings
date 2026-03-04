@@ -109,7 +109,7 @@ setting('website')->name; // null
 Store and access deeply nested values using dot notation:
 
 ```php
-setting('permissions')->save([
+setting('access')->save([
     'roles' => [
         'owner' => [
             'title' => 'Administrator',
@@ -119,17 +119,17 @@ setting('permissions')->save([
 ]);
 
 // Access nested values as objects
-echo setting('permissions')->roles->owner->title; // Administrator
+echo setting('access')->roles->owner->title; // Administrator
 
 // Update a deeply nested value using dot notation
-setting('permissions')->update('roles.owner.title', 'Super Admin');
+setting('access')->update('roles.owner.title', 'Super Admin');
 
-echo setting('permissions')->roles->owner->title; // Super Admin
+echo setting('access')->roles->owner->title; // Super Admin
 
 // Update a nested array
-setting('permissions')->update('roles.owner.users', ['show', 'edit']);
+setting('access')->update('roles.owner.users', ['show', 'edit']);
 
-setting('permissions')->roles->owner->users->toArray(); // ['show', 'edit']
+setting('access')->roles->owner->users->toArray(); // ['show', 'edit']
 ```
 
 ---
@@ -139,24 +139,24 @@ setting('permissions')->roles->owner->users->toArray(); // ['show', 'edit']
 Store and manipulate a list of items:
 
 ```php
-setting('products')->save([
+setting('items')->save([
     ['title' => 'C Title', 'price' => 30],
     ['title' => 'A Title', 'price' => 10],
     ['title' => 'B Title', 'price' => 20],
 ]);
 
 // Get the first and last item
-setting('products')->first()->title; // C Title
-setting('products')->last()->title;  // B Title
+setting('items')->first()->title; // C Title
+setting('items')->last()->title;  // B Title
 
 // Iterate over items
-setting('products')->each(function ($item, $index) {
+setting('items')->each(function ($item, $index) {
     echo $item->title;
 });
 
 // Get all as array
-setting('products')->get();
-setting('products')->toArray();
+setting('items')->get();
+setting('items')->toArray();
 ```
 
 ---
@@ -168,12 +168,12 @@ setting('products')->toArray();
 Sort items by any field, ascending or descending:
 
 ```php
-setting('products')->sort('title', 'asc');
-setting('products')->toArray();
+setting('items')->sort('title', 'asc');
+setting('items')->toArray();
 // titles: ['A Title', 'B Title', 'C Title']
 
-setting('products')->sort('title', 'desc');
-setting('products')->toArray();
+setting('items')->sort('title', 'desc');
+setting('items')->toArray();
 // titles: ['C Title', 'B Title', 'A Title']
 ```
 
@@ -266,17 +266,17 @@ setting('website', 'en')->first()->name; // Website Name
 Works the same with lists of items:
 
 ```php
-setting('posts')->save([
+setting('items')->save([
     [
         'name'  => ['ar' => 'مرحبا', 'en' => 'Hello'],
         'email' => ['ar' => 'البريد', 'en' => 'Email'],
     ],
 ]);
 
-$firstAr = setting('posts', 'ar')->first();
+$firstAr = setting('items', 'ar')->first();
 echo $firstAr->name; // مرحبا
 
-$firstEn = setting('posts', 'en')->first();
+$firstEn = setting('items', 'en')->first();
 echo $firstEn->name; // Hello
 ```
 
@@ -305,12 +305,12 @@ Loop over a list of settings. The default variable is `$item` if no alias is pro
 
 ```blade
 {{-- Default variable: $item --}}
-@eachSetting('products')
+@eachSetting('items')
     <div>{{ $item->name }} - {{ $item->email }}</div>
 @endEachSetting
 
 {{-- Custom variable alias --}}
-@eachSetting('products' as $product)
+@eachSetting('items' as $product)
     <div>{{ $product->name }} - {{ $product->email }}</div>
 @endEachSetting
 

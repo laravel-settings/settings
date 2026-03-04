@@ -28,8 +28,8 @@ class SettingsServiceProvider extends ServiceProvider
     {
         $this->app->bind(SettingsDriver::class, function () {
 
-            return match (config('settings.driver')) {
-                'file' => new JsonFileDriver(),
+            return match (config('settings.driver', 'database')) {
+                'file'  => new JsonFileDriver(),
                 'redis' => new RedisDriver(),
                 'cache' => new CacheDriver(),
                 default => new DatabaseDriver(),

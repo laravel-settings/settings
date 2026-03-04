@@ -1,9 +1,30 @@
 {
   "name": "laravel-settings/settings",
   "description": "Simple settings management package for Laravel",
+  "keywords": [
+      "laravel",
+      "laravel-settings",
+      "settings",
+      "configuration",
+      "driver",
+      "json",
+      "json-settings"
+  ],
   "type": "library",
+  "homepage": "https://github.com/laravel-settings/settings",
   "license": "MIT",
-
+  "authors": [
+      {
+          "name": "Ali Hassan",
+          "email": "ali.dev.uk@gmail.com",
+          "role": "Senior Developer"
+      },
+      {
+          "name": "Sam Hasan",
+          "email": "sam@barameg.co",
+          "role": "Solution Architect"
+      }
+  ],
   "require": {
     "php": "^8.2",
     "illuminate/support": "*"

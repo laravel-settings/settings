@@ -223,8 +223,8 @@ public function test_can_save_and_retrieve_single_language_setting()
     
     $locale = 'ar';
     
-    $this->assertEquals('name ar', setting('single_language')->name->ar);
-    $this->assertEquals('email ar', setting('single_language')->email->ar);
+    $this->assertEquals('name ar', setting('single_language')->name);
+    $this->assertEquals('email ar', setting('single_language')->email);
 
     // Blade Usage
     $blade = "@setting('single_language', 'name.ar')";

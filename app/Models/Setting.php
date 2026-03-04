@@ -9,6 +9,11 @@ class Setting extends Model
 {
     protected $guarded = [];
 
+    public function getTable()
+    {
+        return config('settings.table', 'settings');
+    }
+
     public function value(): Attribute
     {
         return Attribute::make(

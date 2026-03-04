@@ -216,7 +216,31 @@ class SettingsServices implements ArrayAccess
     {
         if (empty($key)) return $this->get();
 
-        return collect(explode('.', $key))->reduce(fn ($value, $key) => is_array($value) && array_key_exists($key, $value) ? $value[$key] : null, $this->value);
+        $parts = explode('.', $key);
+
+        $value = collect($parts)->reduce(
+            fn ($carry, $segment) =>
+                is_array($carry) && array_key_exists($segment, $carry) ? $carry[$segment] : null,
+            $this->value
+        );
+
+        if (!is_array($value)) return $value;
+
+        $lang = $this->lang;
+
+        if (array_is_list($value)) {
+            return array_map(function ($item) use ($lang) {
+                return (object) collect($item)->mapWithKeys(
+                    fn ($v, $k) => [
+                        $k => is_array($v) ? ($v[$lang] ?? reset($v)) : $v
+                    ]
+                )->all();
+            }, $value);
+        }
+
+        if (array_key_exists($lang, $value)) return $value[$lang] ?? reset($value);
+
+        return $value;
     }
 
     public function toArray(): mixed
