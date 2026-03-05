@@ -58,7 +58,7 @@ After publishing, open `config/settings.php` to choose your preferred driver:
 'driver' => env('SETTINGS_DRIVER', 'database'),
 ```
 
-Supported drivers: `database`, `file`, `redis`, `cache`
+Supported drivers: `database`, `file`, `redis`, `cache`, `session`
 
 ---
 
@@ -344,6 +344,7 @@ echo setting('website')->logo_path; // website/logo.png
 | `file`     | Stores settings as JSON files                 |
 | `redis`    | Stores settings in Redis                      |
 | `cache`    | Stores settings using Laravel Cache           |
+| `session`  | Stores settings using Laravel session         |
 
 ---
 
