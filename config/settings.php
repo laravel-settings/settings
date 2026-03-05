@@ -7,7 +7,7 @@ return [
     | Default Settings Driver
     |--------------------------------------------------------------------------
     |
-    | Supported: 'database', 'file', 'redis', 'cache'
+    | Supported: 'database', 'file', 'redis', 'cache', 'session'
     |
     */
     'driver' => env('SETTINGS_DRIVER', 'database'),

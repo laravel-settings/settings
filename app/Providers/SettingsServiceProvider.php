@@ -8,6 +8,7 @@ use LaravelSettings\Settings\Services\Drivers\SettingsDriver;
 use LaravelSettings\Settings\Services\Drivers\DatabaseDriver;
 use LaravelSettings\Settings\Services\Drivers\JsonFileDriver;
 use LaravelSettings\Settings\Services\Drivers\RedisDriver;
+use LaravelSettings\Settings\Services\Drivers\SessionDriver;
 use LaravelSettings\Settings\Services\Drivers\CacheDriver;
 
 class SettingsServiceProvider extends ServiceProvider
@@ -15,6 +16,7 @@ class SettingsServiceProvider extends ServiceProvider
     public function register()
     {
         require_once __DIR__ . '/../Helpers/SettingHelper.php';
+        
         $this->settingsDriver();
     }
 
@@ -29,10 +31,11 @@ class SettingsServiceProvider extends ServiceProvider
         $this->app->bind(SettingsDriver::class, function () {
 
             return match (config('settings.driver', 'database')) {
-                'file'  => new JsonFileDriver(),
-                'redis' => new RedisDriver(),
-                'cache' => new CacheDriver(),
-                default => new DatabaseDriver(),
+                'file'    => new JsonFileDriver(),
+                'redis'   => new RedisDriver(),
+                'cache'   => new CacheDriver(),
+                'session' => new SessionDriver(),
+                default   => new DatabaseDriver(),
             };
 
         });
