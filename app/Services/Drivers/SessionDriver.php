@@ -4,30 +4,42 @@ namespace LaravelSettings\Settings\Services\Drivers;
 
 use LaravelSettings\Settings\Services\Drivers\SettingsDriver;
 
-class SessionDriver implements SettingsDriver
+class SessionDriver implements SettingsDriver 
 {
-    public function get(string $key): mixed
+    protected function key(string $key): string
     {
-        return session($key);
+        $prefix = config('settings.session.prefix', '');
+        return $prefix . $key;
     }
 
-    public function all(): array
-    {
-        return session()->all();
-    }
+    public function get(string $key): mixed 
+    { 
+        return session($this->key($key)); 
+    } 
 
-    public function save(string $key, $value): void
-    {
-        session([$key => $value]);
-    }
+    public function all(): array 
+    { 
+        $prefix = config('settings.session.prefix', '');
 
-    public function delete(string $key): void
-    {
-        session()->forget($key);
-    }
+        return collect(session()->all())
+            ->filter(fn ($value, $k) => str_starts_with($k, $prefix))
+            ->mapWithKeys(fn ($value, $k) => [
+                str_replace($prefix, '', $k) => $value
+            ])->toArray();
+    } 
 
-    public function exists(string $key): bool
-    {
-        return session()->has($key);
-    }
+    public function save(string $key, $value): void 
+    { 
+        session([$this->key($key) => $value]); 
+    } 
+
+    public function delete(string $key): void 
+    { 
+        session()->forget($this->key($key)); 
+    } 
+
+    public function exists(string $key): bool 
+    { 
+        return session()->has($this->key($key)); 
+    } 
 }

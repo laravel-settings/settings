@@ -8,7 +8,7 @@ A flexible and powerful settings management package for Laravel applications. St
 
 - Simple, expressive Eloquent-like syntax (`where`, `groupBy`, `sort`, `search`, ...)
 - Supports multiple data types: arrays, strings, nested objects
-- Supports multiple storage drivers: `database`, `file`, `redis`, `cache`
+- Supports multiple storage drivers: `database`, `file`, `redis`, `cache`, `session`
 - Multilingual / localization support
 - Blade directives for easy use in views
 - CRUD operations: `save`, `create`, `update`, `delete`
