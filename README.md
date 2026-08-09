@@ -311,7 +311,7 @@ Loop over a list of settings. The default variable is `$item` if no alias is pro
 
 {{-- Custom variable alias --}}
 @eachSetting('items' as $user)
-    <div>{{ $product->name }} - {{ $product->email }}</div>
+    <div>{{ $user->name }} - {{ $user->email }}</div>
 @endEachSetting
 
 {{-- Loop over a nested key using dot notation --}}
