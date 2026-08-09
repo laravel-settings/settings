@@ -310,7 +310,7 @@ Loop over a list of settings. The default variable is `$item` if no alias is pro
 @endEachSetting
 
 {{-- Custom variable alias --}}
-@eachSetting('items' as $product)
+@eachSetting('items' as $user)
     <div>{{ $product->name }} - {{ $product->email }}</div>
 @endEachSetting
 
